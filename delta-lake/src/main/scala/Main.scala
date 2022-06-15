@@ -1,6 +1,5 @@
 
 import org.apache.spark.sql.SparkSession
-import io.delta.tables._
 
 object Main {
   def main(arg: Array[String]) {
@@ -11,6 +10,8 @@ object Main {
       .master("local[*]")
       .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
       .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
+      .config("spark.plugins", "com.nvidia.spark.SQLPlugin")
+      .config("spark.rapids.sql.explain", "ALL")
       .getOrCreate()
 
     import spark.implicits._
