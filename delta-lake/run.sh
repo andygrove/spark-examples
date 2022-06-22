@@ -1,0 +1,17 @@
+$SPARK_HOME/bin/spark-shell \
+  --master local[*] \
+  --driver-memory 32g \
+  --packages io.delta:delta-core_2.12:1.2.1 \
+  --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
+  --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog \
+  --jars $SPARK_RAPIDS_PLUGIN_JAR \
+  --conf spark.plugins=com.nvidia.spark.SQLPlugin \
+  --conf spark.rapids.sql.enabled=true \
+  --conf spark.rapids.sql.explain=ALL \
+  --conf spark.rapids.sql.optimizer.enabled=true \
+  --conf spark.rapids.sql.optimizer.explain=ALL \
+  --conf spark.rapids.sql.concurrentGpuTasks=2 \
+  --conf spark.rapids.sql.decimalType.enabled=true \
+  --conf spark.sql.session.timeZone=UTC \
+  --conf spark.eventLog.dir=spark-event-logs \
+  --conf spark.eventLog.enabled=false
