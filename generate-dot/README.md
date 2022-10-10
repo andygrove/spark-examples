@@ -1,1 +1,2 @@
-# Convert Parquet to JSON using Apache Spark
+# Generate simple DOT graphs from Spark physical plan
+
